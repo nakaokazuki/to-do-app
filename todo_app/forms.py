@@ -7,7 +7,10 @@ class TodoForm(forms.ModelForm):
     scheduled_at = forms.DateTimeField(
         required=False,
         input_formats=["%Y-%m-%dT%H:%M"],
-        widget=forms.DateTimeInput(attrs={"type": "datetime-local"}),
+        widget=forms.DateTimeInput(
+            attrs={"type": "datetime-local"},
+            format="%Y-%m-%dT%H:%M",
+        ),
         label="日時",
     )
 

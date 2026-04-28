@@ -1,18 +1,27 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <title>To do フォーム</title>
+    <link rel="stylesheet" href="{% static 'todo_app/style.css' %}">
 </head>
 <body>
-    <h1>To do フォーム</h1>
+    <main class="container">
+        {% if todo %}
+            <h1>To do 編集</h1>
+        {% else %}
+            <h1>To do 追加</h1>
+        {% endif %}
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">保存</button>
-    </form>
-
-    <p><a href="{% url 'todo_list' %}">一覧へ戻る</a></p>
+        <form class="form-card" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="form-actions">
+                <button class="button" type="submit">保存</button>
+                <a class="button-secondary" href="{% url 'todo_list' %}">一覧へ戻る</a>
+            </div>
+        </form>
+    </main>
 </body>
 </html>

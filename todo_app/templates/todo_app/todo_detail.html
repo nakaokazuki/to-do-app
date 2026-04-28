@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>To do 詳細</title>
+    <link rel="stylesheet" href="{% static 'todo_app/style.css' %}">
+</head>
+<body>
+    <main class="container">
+        <div class="page-header">
+            <h1>{{ todo.title }}</h1>
+            <div class="actions">
+                <a class="button-secondary" href="{% url 'todo_edit' todo.pk %}">編集</a>
+                <a class="button-secondary" href="{% url 'todo_list' %}">一覧へ戻る</a>
+            </div>
+        </div>
+
+        <section class="detail-card">
+            <dl>
+                <dt>日時</dt>
+                <dd>{{ todo.scheduled_at|default:"未定" }}</dd>
+
+                <dt>場所</dt>
+                <dd>{{ todo.location|default:"-" }}</dd>
+
+                <dt>注意事項</dt>
+                <dd>{{ todo.caution|linebreaksbr|default:"-" }}</dd>
+
+                <dt>準備が必要なもの</dt>
+                <dd>{{ todo.preparation|linebreaksbr|default:"-" }}</dd>
+
+                <dt>より詳しい内容</dt>
+                <dd>{{ todo.detail|linebreaksbr|default:"-" }}</dd>
+
+                <dt>作成日時</dt>
+                <dd>{{ todo.created_at }}</dd>
+
+                <dt>更新日時</dt>
+                <dd>{{ todo.updated_at }}</dd>
+            </dl>
+        </section>
+    </main>
+</body>
+</html>
